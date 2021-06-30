@@ -4,6 +4,9 @@ import { DisplayButtons, OvalButtons } from '../../styles/SharedStyles'
 export const MainContent = styled.main`
   background-color: white;
   padding: 2em 2.5em;
+  @media (max-width: 850px){
+    padding: .5em .75em;
+  }
 `
 export const MainHeader = styled.header`
   display: flex;
@@ -60,6 +63,10 @@ export const DisplayContent = styled.div`
   color: white;
   padding: 1em 2em;
   font-size: 1.1em;
+  @media (max-width: 850px){
+    padding: .5em 1em;
+    font-size: .9em;
+  }
 `
 export const P = styled.p`
   font-size: .8em;

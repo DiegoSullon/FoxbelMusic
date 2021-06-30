@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 
 export const ResultSection = styled.section`
-  margin-top: 4em;
+  margin-top: 2em;
   margin-bottom: 120px;
 `
 export const ResultTittle = styled.h3`
   color: #e86060;
+  font-size: 2em;
   margin-bottom: 1em;
 `
 export const ResultContent = styled.div`

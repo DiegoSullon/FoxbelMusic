@@ -4,7 +4,7 @@ export const NavbarToggle = styled.nav`
   background-color: #662323;
   padding: 1em 0.5em;
   display: none;
-  height: 100vh;
+  min-height: 100vh;
   @media (max-width: 850px){
     display:inline-block;
   }
@@ -12,7 +12,7 @@ export const NavbarToggle = styled.nav`
 export const NavbarMenu = styled.nav`
   background-color: #662323;
   width: 30%;
-  height: 100vh;
+  min-height: 100vh;
   display:flex;
   flex-direction:column;
   @media (max-width: 850px){
