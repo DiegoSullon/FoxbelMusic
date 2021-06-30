@@ -36,12 +36,12 @@ button {
   padding-left:.4em;
 }
 .navbar-open{
-  position: absolute;
-  display:inline-block;
-  height: 100%;
-  width:70%;
-  z-index: 1;
+  position: absolute !important;
+  display:inline-block !important;
+  height: 100% !important;
+  width:70% !important;
+  z-index: 1 !important;
 }
 .navbar-open-ico{
-  display:inline-block;
+  display:inline-block !important;
 }

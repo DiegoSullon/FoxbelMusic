@@ -1,21 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { NavbarToggle, NavbarMenu, Title, FoxbelImage, TitleText, CloseNavbarIco, CategoryTitle, UlCategory, NavItem, NavLink } from './styles'
 export const Navbar = () => {
+  const [navOpen, setNavOpen] = useState(false)
   return (
     <>
       <NavbarToggle>
-        <button id='burguer-button'>
+        <button id='burguer-button' onClick={() => setNavOpen(true)}>
           <FontAwesomeIcon icon={faBars} color='white' />
         </button>
       </NavbarToggle>
-      <NavbarMenu>
+      <NavbarMenu className={navOpen ? 'navbar-open' : ''}>
         <Title>
           <FoxbelImage src='https://i.ibb.co/RCL7LKs/Foxbel-Music-Icon.png' alt='Foxble icon' />
           <TitleText>Foxbel Music</TitleText>
-          <CloseNavbarIco id='close-navbar-ico'>
-            <FontAwesomeIcon icon={faTimes} color='white' />
+          <CloseNavbarIco id='close-navbar-ico' className={navOpen ? 'navbar-open-ico' : ''}>
+            <FontAwesomeIcon icon={faTimes} color='white' onClick={() => setNavOpen(false)} />
           </CloseNavbarIco>
         </Title>
         <CategoryTitle>Mi Libreria</CategoryTitle>
