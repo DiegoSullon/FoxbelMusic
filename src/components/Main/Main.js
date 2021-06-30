@@ -1,4 +1,5 @@
 import React from 'react'
+import { Results } from './Results/Results'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faPlay, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -40,24 +41,7 @@ export const Main = () => {
           </DisplayButtonsDiv>
         </DisplayContent>
       </MainDisplay>
-      <section id='results'>
-        <h3 class='results-title'>Resultados</h3>
-        <div class='results-content'>
-          <div class='card'>
-            <div class='img-container'>
-              <img class='card-image' src='https://mtracks.azureedge.net/public/images/albums/568/1155.jpg' alt='album image' />
-              <div class='card-icons'>
-                <i class='fas fa-play' />
-                <i class='fas fa-ellipsis-v' />
-              </div>
-            </div>
-            <div class='card-description'>
-              <h4>The War is Over</h4>
-              <span>Josh Baldwin</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Results />
     </MainContent>
   )
 }
