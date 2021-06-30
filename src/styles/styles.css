@@ -51,6 +51,20 @@ button {
   right:-110px;
   cursor: pointer;
 }
+#card-icons .fa-play{
+  position:relative;
+  font-size: 3em;
+  top:-125px;
+  right:-75px;
+  cursor: pointer;
+}
+#card-icons .fa-ellipsis-v{
+  position:relative;
+  font-size: 1.2em;
+  top:-210px;
+  right:-125px;
+  cursor: pointer;
+}
 /* toggle class */
 .selected{
   padding-left:.4em;
