@@ -23,6 +23,7 @@ button {
   height: 100%;
   width: 100%;
 }
+/* Icons */
 .fa-bars{
   font-size: 2em;
 }
@@ -30,6 +31,25 @@ button {
   position: relative;
   top: -60px;
   left: 20px;
+}
+.fa-search{
+  color: #bdbdbd;
+  font-size: 1.4em;
+  position:relative;
+  top: -30px;
+  left: 250px;
+  cursor: pointer;
+}
+.fa-user{
+  color: #e86060;
+  font-size: 1.4em;
+}
+#display-ico .fa-play{
+  position:relative;
+  font-size: 6em;
+  top:-195px;
+  right:-110px;
+  cursor: pointer;
 }
 /* toggle class */
 .selected{
