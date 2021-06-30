@@ -23,7 +23,7 @@ export const Main = () => {
       </MainHeader>
       <MainDisplay>
         <div>
-          <DisplayImage class='img' src='https://images-na.ssl-images-amazon.com/images/I/41OSwd9KC3L.jpg' alt='Album image' />
+          <DisplayImage className='img' src='https://images-na.ssl-images-amazon.com/images/I/41OSwd9KC3L.jpg' alt='Album image' />
           <DisplayIco id='display-ico'>
             <FontAwesomeIcon icon={faPlay} color='white' />
           </DisplayIco>
@@ -32,7 +32,7 @@ export const Main = () => {
           <DisplayTittle>Adele 21</DisplayTittle>
           <span>Lo mejor de adele</span>
           <P>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita perferendis adipisci voluptatum recusandae unde mollitia nam sunt, nobis ad ratione quo tenetur, minus hic. Excepturi corrupti id distinctio nemo cum!</P>
-          <DisplayButtonsDiv class='display-buttons'>
+          <DisplayButtonsDiv className='display-buttons'>
             <PlayButton>Reproducir</PlayButton>
             <FollowButton>Seguir</FollowButton>
             <OptionsButton>

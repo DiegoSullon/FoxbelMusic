@@ -17,7 +17,7 @@ export const Controls = () => {
         <PlaybackButton><FontAwesomeIcon icon={faPlay} color='white' /></PlaybackButton>
         <PlaybackButton><FontAwesomeIcon icon={faStepForward} color='white' /></PlaybackButton>
       </PlaybackControls>
-      <VolumeControls class='volume-controls'>
+      <VolumeControls className='volume-controls'>
         <input type='range' min='0' max='10' />
         <button id='volume-button'><FontAwesomeIcon icon={faVolumeOff} color='white' /></button>
       </VolumeControls>

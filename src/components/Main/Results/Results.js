@@ -7,7 +7,7 @@ export const Results = () => {
     <ResultSection id='results'>
       <ResultTittle>Resultados</ResultTittle>
       <ResultContent>
-        <Card class='card'>
+        <Card className='card'>
           <div>
             <CardImg src='https://mtracks.azureedge.net/public/images/albums/568/1155.jpg' alt='album image' />
             <CardIcons id='card-icons'>
