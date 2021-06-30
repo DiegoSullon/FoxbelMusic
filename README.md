@@ -11,3 +11,6 @@
 ```
 ### API
 [https://api.deezer.com](https://api.deezer.com)
+
+### API
+[Api OAuth](https://developers.deezer.com/api/oauth)
