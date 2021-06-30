@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background-color: cyan;
+}
+i {
+  color: white;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+button {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+#app{
+  display:flex;
+  height: 100%;
+  width: 100%;
+}
+.fa-bars{
+  font-size: 2em;
+}
+.fa-times{
+  position: relative;
+  top: -60px;
+  left: 20px;
+}
+/* toggle class */
+.selected{
+  padding-left:.4em;
+}
+.navbar-open{
+  position: absolute;
+  display:inline-block;
+  height: 100%;
+  width:70%;
+  z-index: 1;
+}
+.navbar-open-ico{
+  display:inline-block;
+}
