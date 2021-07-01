@@ -17,7 +17,7 @@
 
 https://connect.deezer.com/oauth/auth.php?app_id=489802&redirect_uri=http://localhost:8080/&perms=basic_access,email
 
-https://connect.deezer.com/oauth/access_token.php?app_id=489802&secret=7c842327f55156dcddea823ba79f6d4e&code=fr8dcf165a11e99692fff50c1df5248d
+https://connect.deezer.com/oauth/access_token.php?app_id=489802&secret=7c842327f55156dcddea823ba79f6d4e&code=fr79bf6410a77316af026f8cffeaf44f
 
 response_type
 

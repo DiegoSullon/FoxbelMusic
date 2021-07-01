@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: cyan;
+    background-color: white;
     height: 100vh;
     margin: 0;
     overscroll-behavior: none;
