@@ -1,11 +1,18 @@
-import { DECREMENT_COUNTER, INCREMENT_COUNTER } from './actions'
+import { GET_USER } from './actions'
 
-export const counterReducer = (state = 0, action) => {
-  if (action.type === INCREMENT_COUNTER) {
-    return state + action.num
+const initialState = {
+  token: '',
+  user: {},
+  tracklist: {}
+}
+export const playbackReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GET_USER:
+      return {
+        ...state,
+        user: action.user
+      }
+    default:
+      return state
   }
-  if (action.type === DECREMENT_COUNTER) {
-    return state - action.num
-  }
-  return 0
 }

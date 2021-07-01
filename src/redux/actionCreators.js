@@ -1,15 +1,16 @@
-import { DECREMENT_COUNTER, INCREMENT_COUNTER } from './actions'
+import axios from 'axios'
+import { GET_USER } from './actions'
+const API_URL = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/'
 
-export const incrementCounter = (num) => {
-  return {
-    type: INCREMENT_COUNTER,
-    num
-  }
+export const getUser = (token) => dispatch => {
+  console.log('action', token)
+  axios.get(`${API_URL}user/me?access_token=${token}`).then(
+    res => {
+      console.log('DATA:', res.data)
+      return dispatch({
+        type: GET_USER,
+        user: res.data
+      })
+    })
 }
-
-export const decrementCounter = (num) => {
-  return {
-    type: DECREMENT_COUNTER,
-    num
-  }
-}
+// frms3mEyMuZLLLBvsaDrgDHkFMnpPRyXx3Gf6gfcyY8BzWAQYiZ

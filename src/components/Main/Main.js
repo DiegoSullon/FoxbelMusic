@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Results } from './Results/Results'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faPlay, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
@@ -6,7 +6,13 @@ import {
   MainContent, MainHeader, SearchInput, SearchIco, UserInfo, Username, MainDisplay, DisplayImage, DisplayIco, DisplayContent, P,
   DisplayTittle, DisplayButtonsDiv, PlayButton, FollowButton, OptionsButton
 } from './styles'
-export const Main = () => {
+import { connect } from 'react-redux'
+import store from '../../redux/store'
+import { getUser } from '../../redux/actionCreators'
+const Main = ({ user }) => {
+  useEffect(() => {
+    // store.dispatch(getUser('frms3mEyMuZLLLBvsaDrgDHkFMnpPRyXx3Gf6gfcyY8BzWAQYiZ'))
+  }, [])
   return (
     <MainContent>
       <MainHeader>
@@ -18,7 +24,7 @@ export const Main = () => {
         </div>
         <UserInfo>
           <FontAwesomeIcon icon={faUser} color='#e86060' />
-          <Username>Diego Sullon</Username>
+          <Username>{user && user.name}</Username>
         </UserInfo>
       </MainHeader>
       <MainDisplay>
@@ -41,7 +47,15 @@ export const Main = () => {
           </DisplayButtonsDiv>
         </DisplayContent>
       </MainDisplay>
+      {/* Diplay results */}
       <Results />
     </MainContent>
   )
 }
+const mapStateToProps = state => {
+  console.log('MAP', state)
+  return {
+    user: state.user
+  }
+}
+export default connect(mapStateToProps, {})(Main)
