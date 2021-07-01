@@ -7,4 +7,5 @@ export const counterReducer = (state = 0, action) => {
   if (action.type === DECREMENT_COUNTER) {
     return state - action.num
   }
+  return 0
 }
