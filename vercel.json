@@ -2,24 +2,18 @@
     "version": 2,
     "name": "foxbelMusic",
     "builds": [
+        { "use": "@vercel/static-build", "src": "package.json"}
+      ],
+      "routes": [
         {
-            "use": "@vercel/static-build",
-            "src": "package.json"
-        }
-    ],
-    "routes": [
-        {
-            "src": "(.*).js",
-            "dest": "/$1.js"
+          "src": "(.*).js", "dest": "/$1.js"
         },
         {
-            "src": "(.*).json",
-            "dest": "/$1.json"
+          "src": "(.*).json", "dest": "/$1.json"
         },
         {
-            "src": "/.*",
-            "dest": "/index.html"
+          "src": "/.*", "dest": "/index.html"
         }
-    ]
+      ]
 
 }
