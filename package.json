@@ -4,6 +4,7 @@
   "description": "Music player application",
   "main": "index.js",
   "scripts": {
+    "vercel-build": "npm run build",
     "test": "jest",
     "build": "webpack",
     "lint": "standard",
