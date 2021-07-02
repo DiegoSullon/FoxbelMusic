@@ -10,14 +10,19 @@ import { connect } from 'react-redux'
 import store from '../../redux/store'
 import { getLocalTracklist } from '../../redux/actionCreators'
 const Main = ({ user, token, tracklist }) => {
+  const getTracklistAsync = (dispatch) => new Promise((resolve, reject) => {
+    dispatch(getLocalTracklist())
+    resolve()
+  })
   useEffect(() => {
     // console.log(user)
     // store.dispatch(getUser(token))
     // if (user) {
     //   store.dispatch(getUserTracklist(user.tracklist, token))
     // }
-    store.dispatch(getLocalTracklist())
+    getTracklistAsync(store.dispatch)
   }, [])
+  const mainTrack = tracklist[0]
   return (
     <MainContent>
       <MainHeader>
@@ -29,31 +34,32 @@ const Main = ({ user, token, tracklist }) => {
         </div>
         <UserInfo>
           <FontAwesomeIcon icon={faUser} color='#e86060' />
-          <Username>{user && user.name}</Username>
+          <Username>Diego Sullon</Username>
         </UserInfo>
       </MainHeader>
-      <MainDisplay>
-        <div>
-          <DisplayImage className='img' src='https://images-na.ssl-images-amazon.com/images/I/41OSwd9KC3L.jpg' alt='Album image' />
-          <DisplayIco id='display-ico'>
-            <FontAwesomeIcon icon={faPlay} color='white' />
-          </DisplayIco>
-        </div>
-        <DisplayContent id='display-content'>
-          <DisplayTittle>Adele 21</DisplayTittle>
-          <span>Lo mejor de adele</span>
-          <P>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita perferendis adipisci voluptatum recusandae unde mollitia nam sunt, nobis ad ratione quo tenetur, minus hic. Excepturi corrupti id distinctio nemo cum!</P>
-          <DisplayButtonsDiv className='display-buttons'>
-            <PlayButton>Reproducir</PlayButton>
-            <FollowButton>Seguir</FollowButton>
-            <OptionsButton>
-              <FontAwesomeIcon icon={faEllipsisH} color='white' />
-            </OptionsButton>
-          </DisplayButtonsDiv>
-        </DisplayContent>
-      </MainDisplay>
+      {mainTrack &&
+        <MainDisplay>
+          <div>
+            <DisplayImage className='img' src={mainTrack.album.cover_big} alt='Album image' />
+            <DisplayIco id='display-ico'>
+              <FontAwesomeIcon icon={faPlay} color='white' />
+            </DisplayIco>
+          </div>
+          <DisplayContent id='display-content'>
+            <DisplayTittle>{mainTrack.album.title}</DisplayTittle>
+            <span>Lo mejor de {mainTrack.artist.name}</span>
+            <P>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita perferendis adipisci voluptatum recusandae unde mollitia nam sunt, nobis ad ratione quo tenetur, minus hic. Excepturi corrupti id distinctio nemo cum!</P>
+            <DisplayButtonsDiv className='display-buttons'>
+              <PlayButton>Reproducir</PlayButton>
+              <FollowButton>Seguir</FollowButton>
+              <OptionsButton>
+                <FontAwesomeIcon icon={faEllipsisH} color='white' />
+              </OptionsButton>
+            </DisplayButtonsDiv>
+          </DisplayContent>
+        </MainDisplay>}
       {/* Diplay results */}
-      {tracklist && <Results track={tracklist} />}
+      {tracklist && <Results tracks={tracklist} />}
     </MainContent>
   )
 }
