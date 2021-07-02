@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-closing-tag-location */
 import React from 'react'
 import { connect } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { getToken } from '../../../redux/actionCreators'
 
 const Match = ({ token, requestToken }) => {
@@ -15,6 +15,9 @@ const Match = ({ token, requestToken }) => {
           <h1>Match {location.search.slice(6)}</h1>
           <button onClick={() => requestToken(location.search.slice(6))}>Get Token</button>
           <h2>{token}</h2>
+          {
+            token && <span><Link to='/home'>Click to login </Link></span>
+          }
         </div>
         : <div>
           <h1>Click the follow link</h1>
