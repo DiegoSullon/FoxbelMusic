@@ -86,7 +86,7 @@ export const GlobalStyle = createGlobalStyle`
     padding-left:.4em;
   }
   .navbar-open{
-    position: absolute !important;
+    position: fixed !important;
     display:inline-block !important;
     height: 100% !important;
     width:70% !important;

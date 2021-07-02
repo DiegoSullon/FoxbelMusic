@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const NavbarToggle = styled.nav`
   background-color: #662323;
+  position: fixed;
   padding: 1em 0.5em;
   display: none;
   min-height: 100vh;
