@@ -8,10 +8,15 @@ import {
 } from './styles'
 import { connect } from 'react-redux'
 import store from '../../redux/store'
-import { getUser } from '../../redux/actionCreators'
-const Main = ({ user }) => {
+import { getLocalTracklist } from '../../redux/actionCreators'
+const Main = ({ user, token, tracklist }) => {
   useEffect(() => {
-    // store.dispatch(getUser('frms3mEyMuZLLLBvsaDrgDHkFMnpPRyXx3Gf6gfcyY8BzWAQYiZ'))
+    // console.log(user)
+    // store.dispatch(getUser(token))
+    // if (user) {
+    //   store.dispatch(getUserTracklist(user.tracklist, token))
+    // }
+    store.dispatch(getLocalTracklist())
   }, [])
   return (
     <MainContent>
@@ -48,14 +53,15 @@ const Main = ({ user }) => {
         </DisplayContent>
       </MainDisplay>
       {/* Diplay results */}
-      <Results />
+      {tracklist && <Results track={tracklist} />}
     </MainContent>
   )
 }
 const mapStateToProps = state => {
-  console.log('MAP', state)
   return {
-    user: state.user
+    user: state.user,
+    token: state.token,
+    tracklist: state.tracklist
   }
 }
 export default connect(mapStateToProps, {})(Main)
