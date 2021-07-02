@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_TOKEN, GET_USER, GET_USER_TRACKLIST } from './actions'
+import { GET_TOKEN, GET_USER, GET_USER_TRACKLIST, PAUSE_TRACK, PLAY_TRACK, RESUME_TRACK } from './actions'
 const CORS_ANYWHERE = 'https://cors-anywhere.herokuapp.com/'
 const API_URL = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/'
 
@@ -65,5 +65,23 @@ export const getLocalTracklist = () => dispatch => {
       })
     }).catch(err => {
     console.log(err)
+  })
+}
+export const playTrack = (track) => dispatch => {
+  return dispatch({
+    type: PLAY_TRACK,
+    track
+  })
+}
+export const resumeTrack = (trackTime) => dispatch => {
+  return dispatch({
+    type: RESUME_TRACK,
+    trackTime
+  })
+}
+export const pauseTrack = (trackTime) => dispatch => {
+  return dispatch({
+    type: PAUSE_TRACK,
+    trackTime
   })
 }

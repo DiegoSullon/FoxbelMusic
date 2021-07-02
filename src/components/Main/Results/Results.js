@@ -8,7 +8,7 @@ export const Results = ({ track }) => {
       <ResultContent>
         {track && track.map(t => {
           return (
-            <TrackCard key={t.id} img={t.album.cover_big} title={t.title} author={t.artist.name} />
+            <TrackCard key={t.id} img={t.album.cover_big} title={t.title} author={t.artist.name} trackUrl={t.preview} />
           )
         })}
       </ResultContent>
