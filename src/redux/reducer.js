@@ -1,4 +1,4 @@
-import { GET_USER } from './actions'
+import { GET_TOKEN, GET_USER } from './actions'
 
 const initialState = {
   token: '',
@@ -11,6 +11,11 @@ export const playbackReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user
+      }
+    case GET_TOKEN:
+      return {
+        ...state,
+        token: action.token.replace('access_token=', '').replace(/&expires=\d*/, '')
       }
     default:
       return state
