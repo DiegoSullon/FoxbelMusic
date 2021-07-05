@@ -3,7 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { NavbarToggle, NavbarMenu, Title, FoxbelImage, TitleText, CloseNavbarIco, CategoryTitle, UlCategory, NavItem, NavLink } from './styles'
 export const Navbar = () => {
+  let initialLinks = [true, false, false, false, false, false, false, false, false]
   const [navOpen, setNavOpen] = useState(false)
+  const [links, setLinks] = useState(initialLinks)
+  const setNav = index => {
+    initialLinks = [false, false, false, false, false, false, false, false, false]
+    initialLinks[index] = true
+    setLinks(initialLinks)
+  }
   return (
     <>
       <NavbarToggle>
@@ -21,18 +28,18 @@ export const Navbar = () => {
         </Title>
         <CategoryTitle>Mi Libreria</CategoryTitle>
         <UlCategory>
-          <NavItem className='selected'><NavLink href=''>Recientes</NavLink></NavItem>
-          <NavItem><NavLink href=''>Artistas</NavLink></NavItem>
-          <NavItem><NavLink href=''>Albums</NavLink></NavItem>
-          <NavItem><NavLink href=''>Canciones</NavLink></NavItem>
-          <NavItem><NavLink href=''>Estaciones</NavLink></NavItem>
+          <NavItem className={links[0] ? 'selected' : ''}><NavLink onClick={() => setNav(0)}>Recientes</NavLink></NavItem>
+          <NavItem className={links[1] ? 'selected' : ''}><NavLink onClick={() => setNav(1)}>Artistas</NavLink></NavItem>
+          <NavItem className={links[2] ? 'selected' : ''}><NavLink onClick={() => setNav(2)}>Albums</NavLink></NavItem>
+          <NavItem className={links[3] ? 'selected' : ''}><NavLink onClick={() => setNav(3)}>Canciones</NavLink></NavItem>
+          <NavItem className={links[4] ? 'selected' : ''}><NavLink onClick={() => setNav(4)}>Estaciones</NavLink></NavItem>
         </UlCategory>
         <CategoryTitle>Playlist</CategoryTitle>
         <UlCategory>
-          <NavItem><NavLink href=''>Metal</NavLink></NavItem>
-          <NavItem><NavLink href=''>Para bailar</NavLink></NavItem>
-          <NavItem><NavLink href=''>Rock 90s</NavLink></NavItem>
-          <NavItem><NavLink href=''>Baladas</NavLink></NavItem>
+          <NavItem className={links[5] ? 'selected' : ''}><NavLink onClick={() => setNav(5)}>Metal</NavLink></NavItem>
+          <NavItem className={links[6] ? 'selected' : ''}><NavLink onClick={() => setNav(6)}>Para bailar</NavLink></NavItem>
+          <NavItem className={links[7] ? 'selected' : ''}><NavLink onClick={() => setNav(7)}>Rock 90s</NavLink></NavItem>
+          <NavItem className={links[8] ? 'selected' : ''}><NavLink onClick={() => setNav(8)}>Baladas</NavLink></NavItem>
         </UlCategory>
       </NavbarMenu>
     </>

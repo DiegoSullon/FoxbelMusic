@@ -37,8 +37,8 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
         setDuration(trackAudio.duration)
       }
       trackAudio.onended = () => {
-        pause(0)
-        setPlayTime(false)
+        setTime(0)
+        next(track.index)
         console.log('ENDEEED')
       }
     }

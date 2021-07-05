@@ -75,4 +75,5 @@ export const NavLink = styled.a`
   height:100%;
   width:100%;
   padding-left:1.5em;
+  cursor: pointer;
 `
