@@ -29,6 +29,7 @@ export const InfoText = styled.div`
 export const InfoTittle = styled.h4`
   margin:0;
   font-size: 1.1em;
+  overflow: hidden;
 `
 export const PlaybackControls = styled.div`
   align-self:center;

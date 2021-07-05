@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const NavbarToggle = styled.nav`
   background-color: #662323;
+  position: fixed;
   padding: 1em 0.5em;
   display: none;
   min-height: 100vh;
@@ -18,6 +19,9 @@ export const NavbarMenu = styled.nav`
   @media (max-width: 850px){
     display: none;
   }
+  @media (max-width: 1200px){
+    width: 40%;
+  }
 `
 export const Title = styled.nav`
   margin-top: 3.5em;
@@ -26,6 +30,7 @@ export const Title = styled.nav`
   display: flex;
   align-items: center;
   align-self:center;
+  padding: 1em;
 `
 export const FoxbelImage = styled.img`
   height: 100%;
@@ -70,4 +75,5 @@ export const NavLink = styled.a`
   height:100%;
   width:100%;
   padding-left:1.5em;
+  cursor: pointer;
 `

@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: cyan;
+    background-color: white;
     height: 100vh;
     margin: 0;
     overscroll-behavior: none;
@@ -86,7 +86,7 @@ export const GlobalStyle = createGlobalStyle`
     padding-left:.4em;
   }
   .navbar-open{
-    position: absolute !important;
+    position: fixed !important;
     display:inline-block !important;
     height: 100% !important;
     width:70% !important;

@@ -6,6 +6,7 @@ export const MainContent = styled.main`
   padding: 2em 2.5em;
   @media (max-width: 850px){
     padding: .5em .75em;
+    margin-left: 2em;
   }
 `
 export const MainHeader = styled.header`
@@ -28,6 +29,16 @@ export const SearchInput = styled.input`
 `
 export const SearchIco = styled.div`
   position:absolute;
+`
+export const AccessLink = styled.a`
+  color: white;
+  padding: .5em 1em;
+  border-radius: 3em;
+  background-color: #e86060;
+  cursor: pointer;
+  @media (max-width: 850px){
+    margin-bottom: 1em;
+  }
 `
 export const UserInfo = styled.div`
   display: flex;
