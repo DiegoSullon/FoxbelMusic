@@ -8,7 +8,7 @@ import {
 } from './styles'
 import { connect } from 'react-redux'
 import store from '../../redux/store'
-import { getLocalTracklist } from '../../redux/actionCreators'
+import { getLocalTracklist, playTrack } from '../../redux/actionCreators'
 const Main = ({ user, token, tracklist }) => {
   const getTracklistAsync = (dispatch) => new Promise((resolve, reject) => {
     dispatch(getLocalTracklist())
@@ -42,7 +42,14 @@ const Main = ({ user, token, tracklist }) => {
           <div>
             <DisplayImage className='img' src={mainTrack.album.cover_big} alt='Album image' />
             <DisplayIco id='display-ico'>
-              <FontAwesomeIcon icon={faPlay} color='white' />
+              <FontAwesomeIcon
+                icon={faPlay} color='white' onClick={() => store.dispatch(playTrack({
+                  name: mainTrack?.title,
+                  img: mainTrack?.album.cover_big,
+                  author: mainTrack?.artist.name,
+                  url: mainTrack?.preview
+                }))}
+              />
             </DisplayIco>
           </div>
           <DisplayContent id='display-content'>

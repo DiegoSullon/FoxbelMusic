@@ -54,7 +54,6 @@ export const getUserTracklist = (url, token) => dispatch => {
 export const getLocalTracklist = () => dispatch => {
   axios.get('http://localhost:3000/data').then(
     res => {
-      console.log('DATA:', res.data)
       if (res.data.error) {
         window.location.href = '/'
         return
