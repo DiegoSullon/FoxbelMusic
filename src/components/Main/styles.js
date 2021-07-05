@@ -30,6 +30,16 @@ export const SearchInput = styled.input`
 export const SearchIco = styled.div`
   position:absolute;
 `
+export const AccessLink = styled.a`
+  color: white;
+  padding: .5em 1em;
+  border-radius: 3em;
+  background-color: #e86060;
+  cursor: pointer;
+  @media (max-width: 850px){
+    margin-bottom: 1em;
+  }
+`
 export const UserInfo = styled.div`
   display: flex;
   @media (max-width: 850px){

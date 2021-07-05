@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Results } from './Results/Results'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faUser, faPlay, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faPlay, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 import {
-  MainContent, MainHeader, SearchInput, SearchIco, UserInfo, Username, MainDisplay, DisplayImage, DisplayIco, DisplayContent, P,
-  DisplayTittle, DisplayButtonsDiv, PlayButton, FollowButton, OptionsButton
+  MainContent, MainHeader, SearchInput, SearchIco, MainDisplay, DisplayImage, DisplayIco, DisplayContent, P,
+  DisplayTittle, DisplayButtonsDiv, PlayButton, FollowButton, OptionsButton, AccessLink
 } from './styles'
 import { connect } from 'react-redux'
 import store from '../../redux/store'
@@ -49,10 +49,7 @@ const Main = ({ user, token, tracklist, searchAction }) => {
             <FontAwesomeIcon icon={faSearch} color='#bdbdbd' onClick={() => searchAction(search)} />
           </SearchIco>
         </div>
-        <UserInfo>
-          <FontAwesomeIcon icon={faUser} color='#e86060' />
-          <Username>Diego Sullon</Username>
-        </UserInfo>
+        <AccessLink href='https://cors-anywhere.herokuapp.com/' target='_blank' rel='noopener noreferrer'>Get temporary access</AccessLink>
       </MainHeader>
       {mainTrack &&
         <MainDisplay>
