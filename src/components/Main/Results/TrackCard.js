@@ -5,7 +5,7 @@ import { Card, CardImg, CardIcons, CardDescriptionTittle } from './styles'
 import { connect } from 'react-redux'
 import { playTrack } from '../../../redux/actionCreators'
 
-const TrackCard = ({ img, title, author, play, trackUrl }) => {
+const TrackCard = ({ img, title, author, play, trackUrl, index }) => {
   return (
     <Card className='card'>
       <div>
@@ -17,7 +17,8 @@ const TrackCard = ({ img, title, author, play, trackUrl }) => {
                 name: title,
                 img,
                 author,
-                url: trackUrl
+                url: trackUrl,
+                index
               })
             }}
           />

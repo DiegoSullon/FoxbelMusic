@@ -9,7 +9,8 @@ export const Results = ({ tracks }) => {
       name: tracks[0]?.title,
       img: tracks[0]?.album.cover_big,
       author: tracks[0]?.artist.name,
-      url: tracks[0]?.preview
+      url: tracks[0]?.preview,
+      index: 0
     }))
   }, [tracks])
   return (
@@ -18,7 +19,7 @@ export const Results = ({ tracks }) => {
       <ResultContent>
         {tracks && tracks.map(t => {
           return (
-            <TrackCard key={t.id} img={t.album.cover_big} title={t.title} author={t.artist.name} trackUrl={t.preview} />
+            <TrackCard key={t.id} img={t.album.cover_big} title={t.title} author={t.artist.name} trackUrl={t.preview} index={tracks.indexOf(t)} />
           )
         })}
       </ResultContent>

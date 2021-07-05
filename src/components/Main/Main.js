@@ -47,7 +47,8 @@ const Main = ({ user, token, tracklist }) => {
                   name: mainTrack?.title,
                   img: mainTrack?.album.cover_big,
                   author: mainTrack?.artist.name,
-                  url: mainTrack?.preview
+                  url: mainTrack?.preview,
+                  index: 0
                 }))}
               />
             </DisplayIco>
