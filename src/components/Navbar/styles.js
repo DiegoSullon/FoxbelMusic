@@ -19,6 +19,9 @@ export const NavbarMenu = styled.nav`
   @media (max-width: 850px){
     display: none;
   }
+  @media (max-width: 1200px){
+    width: 40%;
+  }
 `
 export const Title = styled.nav`
   margin-top: 3.5em;
@@ -27,6 +30,7 @@ export const Title = styled.nav`
   display: flex;
   align-items: center;
   align-self:center;
+  padding: 1em;
 `
 export const FoxbelImage = styled.img`
   height: 100%;
