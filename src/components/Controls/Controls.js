@@ -16,13 +16,13 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
   useEffect(() => {
     if (trackAudio) {
       trackAudio.currentTime = 0
+      trackAudio.volume = volumeValue / 10
       if (play) {
         setTime(0)
         setPlayTime(false)
         setTimeout(() => {
           setPlayTime(true)
           trackAudio.play()
-          trackAudio.volume = volumeValue / 10
           updateTime()
         }, 1000)
       }
@@ -60,7 +60,7 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
   }
   const updateVolume = (event) => {
     setVolumeValue(event?.target.value)
-    trackAudio.volume = volumeValue / 10
+    trackAudio.volume = event?.target.value / 10
   }
   return (
     <DisplayControl id='display-control'>
