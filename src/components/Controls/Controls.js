@@ -74,7 +74,11 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
       </SongInfo>
       <audio ref={(audio) => { setTrackAudio(audio) }} src={track.url} onChange={() => console.log('Asdasdasd')} />
       <PlaybackControls>
-        <PlaybackButton onClick={() => previous(track.index)}><FontAwesomeIcon icon={faStepBackward} color='white' /></PlaybackButton>
+        <PlaybackButton onClick={() => {
+          setTime(0)
+          previous(track.index)
+        }}
+        ><FontAwesomeIcon icon={faStepBackward} color='white' /></PlaybackButton>
         {play
           ? <PlaybackButton onClick={() => {
             pause(0)
@@ -89,7 +93,11 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
               trackAudio.play()
             }, 1000)
           }}><FontAwesomeIcon icon={faPlay} color='white' /></PlaybackButton>}
-        <PlaybackButton onClick={() => next(track.index)}><FontAwesomeIcon icon={faStepForward} color='white' /></PlaybackButton>
+        <PlaybackButton onClick={() => {
+          setTime(0)
+          next(track.index)
+        }}
+        ><FontAwesomeIcon icon={faStepForward} color='white' /></PlaybackButton>
       </PlaybackControls>
       <VolumeControls className='volume-controls'>
         <input type='range' min='0' max='10' value={volumeValue} onChange={updateVolume} />
