@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { NavbarToggle, NavbarMenu, Title, FoxbelImage, TitleText, CloseNavbarIco, CategoryTitle, UlCategory, NavItem, NavLink } from './styles'
-export const Navbar = () => {
+import { connect } from 'react-redux'
+import { albumTracklist, artistTracklist, genrTracklist, getLocalTracklist, getTracklist, stationTracklist } from '../../redux/actionCreators'
+const Navbar = ({ getDefault, getArtist, getAlbum, getSongs, getStation, getMetal, getDance, getRock, getBalads }) => {
   let initialLinks = [true, false, false, false, false, false, false, false, false]
   const [navOpen, setNavOpen] = useState(false)
   const [links, setLinks] = useState(initialLinks)
@@ -10,6 +12,35 @@ export const Navbar = () => {
     initialLinks = [false, false, false, false, false, false, false, false, false]
     initialLinks[index] = true
     setLinks(initialLinks)
+    switch (index) {
+      case 0:
+        getDefault()
+        break
+      case 1 :
+        getArtist()
+        break
+      case 2 :
+        getAlbum()
+        break
+      case 3 :
+        getSongs()
+        break
+      case 4 :
+        getStation()
+        break
+      case 5 :
+        getMetal()
+        break
+      case 6 :
+        getDance()
+        break
+      case 7 :
+        getRock()
+        break
+      case 8 :
+        getBalads()
+        break
+    }
   }
   return (
     <>
@@ -45,3 +76,35 @@ export const Navbar = () => {
     </>
   )
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    getDefault: () => {
+      dispatch(getLocalTracklist())
+    },
+    getArtist: () => {
+      dispatch(artistTracklist())
+    },
+    getAlbum: () => {
+      dispatch(albumTracklist())
+    },
+    getSongs: () => {
+      dispatch(getTracklist())
+    },
+    getStation: () => {
+      dispatch(stationTracklist())
+    },
+    getMetal: () => {
+      dispatch(genrTracklist('metal'))
+    },
+    getDance: () => {
+      dispatch(genrTracklist('dance'))
+    },
+    getRock: () => {
+      dispatch(genrTracklist('rock'))
+    },
+    getBalads: () => {
+      dispatch(genrTracklist('balads'))
+    }
+  }
+}
+export default connect(null, mapDispatchToProps)(Navbar)

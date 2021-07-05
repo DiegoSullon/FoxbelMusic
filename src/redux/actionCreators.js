@@ -35,22 +35,6 @@ export const getToken = (code) => dispatch => {
     console.log(err)
   })
 }
-export const getUserTracklist = (url, token) => dispatch => {
-  axios.get(`${url}?access_token=${token}`).then(
-    res => {
-      console.log('DATA:', res.data)
-      if (res.data.error) {
-        window.location.href = '/'
-        return
-      }
-      return dispatch({
-        type: GET_TRACKLIST,
-        tracklist: res.data.data
-      })
-    }).catch(err => {
-    console.log(err)
-  })
-}
 export const searchTracklist = (search) => dispatch => {
   axios.get(`${API_URL}search?q=${search}`).then(
     res => {
@@ -99,6 +83,54 @@ export const albumTracklist = () => dispatch => {
     console.log(err)
   })
 }
+export const getTracklist = () => dispatch => {
+  axios.get(`${API_URL}radio/37151/tracks`).then(
+    res => {
+      console.log('DATA:', res.data)
+      if (res.data.error) {
+        window.location.href = '/'
+        return
+      }
+      return dispatch({
+        type: GET_TRACKLIST,
+        tracklist: res.data.data
+      })
+    }).catch(err => {
+    console.log(err)
+  })
+}
+export const stationTracklist = () => dispatch => {
+  axios.get(`${API_URL}radio/38215/tracks`).then(
+    res => {
+      console.log('DATA:', res.data)
+      if (res.data.error) {
+        window.location.href = '/'
+        return
+      }
+      return dispatch({
+        type: GET_TRACKLIST,
+        tracklist: res.data.data
+      })
+    }).catch(err => {
+    console.log(err)
+  })
+}
+export const genrTracklist = (genr) => dispatch => {
+  axios.get(`${API_URL}search?q=${genr}`).then(
+    res => {
+      console.log('DATA:', res.data)
+      if (res.data.error) {
+        window.location.href = '/'
+        return
+      }
+      return dispatch({
+        type: GET_TRACKLIST,
+        tracklist: res.data.data
+      })
+    }).catch(err => {
+    console.log(err)
+  })
+}
 export const getLocalTracklist = () => dispatch => {
   axios.get('http://localhost:3000/data').then(
     res => {
@@ -106,6 +138,7 @@ export const getLocalTracklist = () => dispatch => {
         window.location.href = '/'
         return
       }
+      console.log(res.data)
       return dispatch({
         type: GET_TRACKLIST,
         tracklist: res.data

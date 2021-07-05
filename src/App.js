@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navbar } from './components/Navbar/Navbar.js'
+import Navbar from './components/Navbar/Navbar.js'
 import Main from './components/Main/Main.js'
 import Controls from './components/Controls/Controls'
 import Match from './components/Main/Match/Match.js'
