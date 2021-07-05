@@ -1,18 +1,7 @@
-import React, { useEffect } from 'react'
-import { setTrack } from '../../../redux/actionCreators'
-import store from '../../../redux/store'
+import React from 'react'
 import { ResultSection, ResultTittle, ResultContent } from './styles'
 import TrackCard from './TrackCard.js'
 export const Results = ({ tracks }) => {
-  useEffect(() => {
-    store.dispatch(setTrack({
-      name: tracks[0]?.title,
-      img: tracks[0]?.album.cover_big,
-      author: tracks[0]?.artist.name,
-      url: tracks[0]?.preview,
-      index: 0
-    }))
-  }, [tracks])
   return (
     <ResultSection id='results'>
       <ResultTittle>Resultados</ResultTittle>

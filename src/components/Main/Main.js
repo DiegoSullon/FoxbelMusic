@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Results } from './Results/Results'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faUser, faPlay, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
@@ -8,8 +8,10 @@ import {
 } from './styles'
 import { connect } from 'react-redux'
 import store from '../../redux/store'
-import { getLocalTracklist, playTrack } from '../../redux/actionCreators'
+import { getLocalTracklist, playTrack, setTrack } from '../../redux/actionCreators'
 const Main = ({ user, token, tracklist }) => {
+  const [search, setSearch] = useState('')
+  const [searchList, setSearchList] = useState(tracklist)
   const getTracklistAsync = (dispatch) => new Promise((resolve, reject) => {
     dispatch(getLocalTracklist())
     resolve()
@@ -22,12 +24,27 @@ const Main = ({ user, token, tracklist }) => {
     // }
     getTracklistAsync(store.dispatch)
   }, [])
+  useEffect(() => {
+    setSearchList(tracklist)
+    store.dispatch(setTrack({
+      name: tracklist[0]?.title,
+      img: tracklist[0]?.album.cover_big,
+      author: tracklist[0]?.artist.name,
+      url: tracklist[0]?.preview,
+      index: 0
+    }))
+  }, [tracklist])
+  const updateSearch = event => {
+    const text = event.target.value
+    setSearch(text)
+    setSearchList(tracklist.filter(i => i.title.toLowerCase().includes(text.toLowerCase()) || i.artist.name.toLowerCase().includes(text.toLowerCase())))
+  }
   const mainTrack = tracklist[0]
   return (
     <MainContent>
       <MainHeader>
         <div>
-          <SearchInput type='text' placeholder='Buscar' />
+          <SearchInput type='text' placeholder='Buscar' value={search} onChange={updateSearch} />
           <SearchIco>
             <FontAwesomeIcon icon={faSearch} color='#bdbdbd' />
           </SearchIco>
@@ -67,7 +84,7 @@ const Main = ({ user, token, tracklist }) => {
           </DisplayContent>
         </MainDisplay>}
       {/* Diplay results */}
-      {tracklist && <Results tracks={tracklist} />}
+      {searchList && <Results tracks={searchList} />}
     </MainContent>
   )
 }
