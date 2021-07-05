@@ -6,6 +6,7 @@ export const MainContent = styled.main`
   padding: 2em 2.5em;
   @media (max-width: 850px){
     padding: .5em .75em;
+    margin-left: 2em;
   }
 `
 export const MainHeader = styled.header`
