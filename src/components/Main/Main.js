@@ -8,8 +8,8 @@ import {
 } from './styles'
 import { connect } from 'react-redux'
 import store from '../../redux/store'
-import { getLocalTracklist, playTrack, setTrack } from '../../redux/actionCreators'
-const Main = ({ user, token, tracklist }) => {
+import { getLocalTracklist, playTrack, searchTracklist, setTrack } from '../../redux/actionCreators'
+const Main = ({ user, token, tracklist, searchAction }) => {
   const [search, setSearch] = useState('')
   const [searchList, setSearchList] = useState(tracklist)
   const getTracklistAsync = (dispatch) => new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ const Main = ({ user, token, tracklist }) => {
         <div>
           <SearchInput type='text' placeholder='Buscar' value={search} onChange={updateSearch} />
           <SearchIco>
-            <FontAwesomeIcon icon={faSearch} color='#bdbdbd' />
+            <FontAwesomeIcon icon={faSearch} color='#bdbdbd' onClick={() => searchAction(search)} />
           </SearchIco>
         </div>
         <UserInfo>
@@ -95,4 +95,11 @@ const mapStateToProps = state => {
     tracklist: state.tracklist
   }
 }
-export default connect(mapStateToProps, {})(Main)
+const mapDispatchToProps = dispatch => {
+  return {
+    searchAction: (search) => {
+      dispatch(searchTracklist(search))
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Main)

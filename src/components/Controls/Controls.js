@@ -15,7 +15,6 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
   const [playTime, setPlayTime] = useState(false)
   useEffect(() => {
     if (trackAudio) {
-      trackAudio.volume = volumeValue / 10
       trackAudio.currentTime = 0
       if (play) {
         setTime(0)
@@ -23,6 +22,7 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
         setTimeout(() => {
           setPlayTime(true)
           trackAudio.play()
+          trackAudio.volume = volumeValue / 10
           updateTime()
         }, 1000)
       }

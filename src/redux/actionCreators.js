@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_TOKEN, GET_USER, GET_USER_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK } from './actions'
+import { GET_TOKEN, GET_USER, GET_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK } from './actions'
 const CORS_ANYWHERE = 'https://cors-anywhere.herokuapp.com/'
 const API_URL = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/'
 
@@ -44,7 +44,55 @@ export const getUserTracklist = (url, token) => dispatch => {
         return
       }
       return dispatch({
-        type: GET_USER_TRACKLIST,
+        type: GET_TRACKLIST,
+        tracklist: res.data.data
+      })
+    }).catch(err => {
+    console.log(err)
+  })
+}
+export const searchTracklist = (search) => dispatch => {
+  axios.get(`${API_URL}search?q=${search}`).then(
+    res => {
+      console.log('DATA:', res.data)
+      if (res.data.error) {
+        window.location.href = '/'
+        return
+      }
+      return dispatch({
+        type: GET_TRACKLIST,
+        tracklist: res.data.data
+      })
+    }).catch(err => {
+    console.log(err)
+  })
+}
+export const artistTracklist = () => dispatch => {
+  axios.get(`${API_URL}artist/27/top?limit=50`).then(
+    res => {
+      console.log('DATA:', res.data)
+      if (res.data.error) {
+        window.location.href = '/'
+        return
+      }
+      return dispatch({
+        type: GET_TRACKLIST,
+        tracklist: res.data.data
+      })
+    }).catch(err => {
+    console.log(err)
+  })
+}
+export const albumTracklist = () => dispatch => {
+  axios.get(`${API_URL}album/302127/tracks`).then(
+    res => {
+      console.log('DATA:', res.data)
+      if (res.data.error) {
+        window.location.href = '/'
+        return
+      }
+      return dispatch({
+        type: GET_TRACKLIST,
         tracklist: res.data.data
       })
     }).catch(err => {
@@ -59,7 +107,7 @@ export const getLocalTracklist = () => dispatch => {
         return
       }
       return dispatch({
-        type: GET_USER_TRACKLIST,
+        type: GET_TRACKLIST,
         tracklist: res.data
       })
     }).catch(err => {

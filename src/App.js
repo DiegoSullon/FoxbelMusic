@@ -11,7 +11,7 @@ export const App = () => {
       <GlobalStyle />
       <Navbar />
       <Switch>
-        <Route exact path='/home' component={Main} />
+        <Route exact path='/' component={Main} />
         <Route exact path='*' component={Match} />
       </Switch>
       <Controls />
