@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStepBackward, faPlay, faPause, faStepForward, faVolumeOff } from '@fortawesome/free-solid-svg-icons'
 import { DisplayControl, SongInfo, SongImg, InfoText, InfoTittle, PlaybackControls, PlaybackButton, VolumeControls } from './styles'
 import { connect } from 'react-redux'
-import { pauseTrack, resumeTrack } from '../../redux/actionCreators'
+import { nextTrack, pauseTrack, previousTrack, resumeTrack } from '../../redux/actionCreators'
 
-const Controls = ({ play, track, trackTime, pause, resume }) => {
+const Controls = ({ play, track, pause, resume, next, previous }) => {
   const [volumeValue, setVolumeValue] = useState(1)
   const [duration, setDuration] = useState(null)
   const [trackAudio, setTrackAudio] = useState(null)
@@ -74,7 +74,7 @@ const Controls = ({ play, track, trackTime, pause, resume }) => {
       </SongInfo>
       <audio ref={(audio) => { setTrackAudio(audio) }} src={track.url} onChange={() => console.log('Asdasdasd')} />
       <PlaybackControls>
-        <PlaybackButton><FontAwesomeIcon icon={faStepBackward} color='white' /></PlaybackButton>
+        <PlaybackButton onClick={() => previous(track.index)}><FontAwesomeIcon icon={faStepBackward} color='white' /></PlaybackButton>
         {play
           ? <PlaybackButton onClick={() => {
             pause(0)
@@ -89,7 +89,7 @@ const Controls = ({ play, track, trackTime, pause, resume }) => {
               trackAudio.play()
             }, 1000)
           }}><FontAwesomeIcon icon={faPlay} color='white' /></PlaybackButton>}
-        <PlaybackButton><FontAwesomeIcon icon={faStepForward} color='white' /></PlaybackButton>
+        <PlaybackButton onClick={() => next(track.index)}><FontAwesomeIcon icon={faStepForward} color='white' /></PlaybackButton>
       </PlaybackControls>
       <VolumeControls className='volume-controls'>
         <input type='range' min='0' max='10' value={volumeValue} onChange={updateVolume} />
@@ -112,8 +112,7 @@ const digits = time => {
 }
 const mapStateToProps = state => ({
   play: state.play,
-  track: state.track,
-  trackTime: state.trackTime
+  track: state.track
 })
 const mapDispatchToProps = dispatch => ({
   pause: (trackTime) => {
@@ -121,6 +120,12 @@ const mapDispatchToProps = dispatch => ({
   },
   resume: (trackTime) => {
     dispatch(resumeTrack(trackTime))
+  },
+  next: (index) => {
+    dispatch(nextTrack(index))
+  },
+  previous: (index) => {
+    dispatch(previousTrack(index))
   }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Controls)

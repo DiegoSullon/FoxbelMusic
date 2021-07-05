@@ -1,4 +1,4 @@
-import { GET_TOKEN, GET_USER, GET_USER_TRACKLIST, PAUSE_TRACK, PLAY_TRACK, RESUME_TRACK, SET_TRACK } from './actions'
+import { GET_TOKEN, GET_USER, GET_USER_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK } from './actions'
 
 const initialState = {
   token: '',
@@ -49,7 +49,36 @@ export const playbackReducer = (state = initialState, action) => {
         play: false,
         trackTime: action.trackTime
       }
+    case NEXT_TRACK:
+      return {
+        ...state,
+        track: customTrack(state.tracklist, action.index, true)
+      }
+    case PREVIOUS_TRACK:
+      return {
+        ...state,
+        track: customTrack(state.tracklist, action.index, false)
+      }
     default:
       return state
+  }
+}
+const customTrack = (tracklist, index, next) => {
+  const newIndex = next ? index + 1 : index - 1
+  if (newIndex < 0 || newIndex >= tracklist.length) {
+    return {
+      name: tracklist[index].title,
+      img: tracklist[index].album.cover_big,
+      author: tracklist[index].artist.name,
+      url: tracklist[index].preview,
+      index
+    }
+  }
+  return {
+    name: tracklist[newIndex].title,
+    img: tracklist[newIndex].album.cover_big,
+    author: tracklist[newIndex].artist.name,
+    url: tracklist[newIndex].preview,
+    index: newIndex
   }
 }
