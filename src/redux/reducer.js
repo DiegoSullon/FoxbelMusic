@@ -1,19 +1,26 @@
-import { GET_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK, ERROR } from './actions'
+import { GET_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK, ERROR, LOADING } from './actions'
 
 const initialState = {
   tracklist: [],
   track: {},
   play: false,
   trackTime: 0,
-  error: false
+  error: false,
+  loading: false
 }
 export const playbackReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOADING:
+      return {
+        ...state,
+        loading: action.loading
+      }
     case GET_TRACKLIST:
       return {
         ...state,
         tracklist: action.tracklist,
-        error: false
+        error: false,
+        loading: false
       }
     case SET_TRACK:
       return {

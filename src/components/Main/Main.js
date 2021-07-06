@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Results } from './Results/Results'
+import Spinner from './Spinner/Spinner.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faPlay, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 import {
@@ -9,7 +10,7 @@ import {
 import { connect } from 'react-redux'
 import store from '../../redux/store'
 import { getLocalTracklist, playTrack, searchTracklist, setTrack } from '../../redux/actionCreators'
-const Main = ({ error, tracklist, searchAction }) => {
+const Main = ({ error, loading, tracklist, searchAction }) => {
   const [search, setSearch] = useState('')
   const [searchList, setSearchList] = useState(tracklist)
   const getTracklistAsync = (dispatch) => new Promise((resolve, reject) => {
@@ -43,6 +44,7 @@ const Main = ({ error, tracklist, searchAction }) => {
   const mainTrack = tracklist[0]
   return (
     <MainContent>
+      {loading && <Spinner />}
       {error && <ErrorMessage>You have reached the limit of requests per hour, request access again later.</ErrorMessage>}
       <MainHeader>
         <div>
@@ -90,7 +92,8 @@ const Main = ({ error, tracklist, searchAction }) => {
 const mapStateToProps = state => {
   return {
     tracklist: state.tracklist,
-    error: state.error
+    error: state.error,
+    loading: state.loading
   }
 }
 const mapDispatchToProps = dispatch => {
