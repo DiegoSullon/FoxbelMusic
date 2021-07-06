@@ -24,6 +24,12 @@ const Main = ({ user, token, error, tracklist, searchAction }) => {
     // }
     getTracklistAsync(store.dispatch)
   }, [])
+  const handleKeyPress = event => {
+    const { key, keyCode } = event
+    if (keyCode === 32 || key === 'Enter') {
+      searchAction(search)
+    }
+  }
   useEffect(() => {
     setSearchList(tracklist)
     store.dispatch(setTrack({
@@ -45,7 +51,7 @@ const Main = ({ user, token, error, tracklist, searchAction }) => {
       {error && <ErrorMessage>You have reached the limit of requests per hour, request access again later.</ErrorMessage>}
       <MainHeader>
         <div>
-          <SearchInput type='text' placeholder='Buscar' value={search} onChange={updateSearch} />
+          <SearchInput type='text' placeholder='Buscar' value={search} onChange={updateSearch} onKeyDown={handleKeyPress} />
           <SearchIco>
             <FontAwesomeIcon icon={faSearch} color='#bdbdbd' onClick={() => searchAction(search)} />
           </SearchIco>
@@ -97,7 +103,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     searchAction: (search) => {
-      dispatch(searchTracklist(search))
+      if (search !== '') {
+        dispatch(searchTracklist(search))
+      } else {
+        dispatch(getLocalTracklist())
+      }
     }
   }
 }
