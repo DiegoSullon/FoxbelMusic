@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faPlay, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 import {
   MainContent, MainHeader, SearchInput, SearchIco, MainDisplay, DisplayImage, DisplayIco, DisplayContent, P,
-  DisplayTittle, DisplayButtonsDiv, PlayButton, FollowButton, OptionsButton, AccessLink
+  DisplayTittle, DisplayButtonsDiv, PlayButton, FollowButton, OptionsButton, AccessLink, ErrorMessage
 } from './styles'
 import { connect } from 'react-redux'
 import store from '../../redux/store'
 import { getLocalTracklist, playTrack, searchTracklist, setTrack } from '../../redux/actionCreators'
-const Main = ({ user, token, tracklist, searchAction }) => {
+const Main = ({ user, token, error, tracklist, searchAction }) => {
   const [search, setSearch] = useState('')
   const [searchList, setSearchList] = useState(tracklist)
   const getTracklistAsync = (dispatch) => new Promise((resolve, reject) => {
@@ -42,6 +42,7 @@ const Main = ({ user, token, tracklist, searchAction }) => {
   const mainTrack = tracklist[0]
   return (
     <MainContent>
+      {error && <ErrorMessage>You have reached the limit of requests per hour, request access again later.</ErrorMessage>}
       <MainHeader>
         <div>
           <SearchInput type='text' placeholder='Buscar' value={search} onChange={updateSearch} />
@@ -89,7 +90,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     token: state.token,
-    tracklist: state.tracklist
+    tracklist: state.tracklist,
+    error: state.error
   }
 }
 const mapDispatchToProps = dispatch => {

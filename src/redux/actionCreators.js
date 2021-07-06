@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { GET_TOKEN, GET_USER, GET_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK } from './actions'
+import DefaultSongs from '../../defaultSongs'
+import { GET_TOKEN, GET_USER, GET_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK, ERROR } from './actions'
 const CORS_ANYWHERE = 'https://cors-anywhere.herokuapp.com/'
-const API_URL = 'https://cors-anywhere.herokuapp.com/https://api.deezer.com/'
+const API_URL = CORS_ANYWHERE + 'https://api.deezer.com/'
 
 export const getUser = (token) => dispatch => {
   axios.get(`${API_URL}user/me?access_token=${token}`).then(
@@ -47,8 +48,10 @@ export const searchTracklist = (search) => dispatch => {
         type: GET_TRACKLIST,
         tracklist: res.data.data
       })
-    }).catch(err => {
-    console.log(err)
+    }).catch(() => {
+    return dispatch({
+      type: ERROR
+    })
   })
 }
 export const artistTracklist = () => dispatch => {
@@ -63,8 +66,10 @@ export const artistTracklist = () => dispatch => {
         type: GET_TRACKLIST,
         tracklist: res.data.data
       })
-    }).catch(err => {
-    console.log(err)
+    }).catch(() => {
+    return dispatch({
+      type: ERROR
+    })
   })
 }
 export const albumTracklist = () => dispatch => {
@@ -79,8 +84,10 @@ export const albumTracklist = () => dispatch => {
         type: GET_TRACKLIST,
         tracklist: res.data.data
       })
-    }).catch(err => {
-    console.log(err)
+    }).catch(() => {
+    return dispatch({
+      type: ERROR
+    })
   })
 }
 export const getTracklist = () => dispatch => {
@@ -95,8 +102,10 @@ export const getTracklist = () => dispatch => {
         type: GET_TRACKLIST,
         tracklist: res.data.data
       })
-    }).catch(err => {
-    console.log(err)
+    }).catch(() => {
+    return dispatch({
+      type: ERROR
+    })
   })
 }
 export const stationTracklist = () => dispatch => {
@@ -111,8 +120,10 @@ export const stationTracklist = () => dispatch => {
         type: GET_TRACKLIST,
         tracklist: res.data.data
       })
-    }).catch(err => {
-    console.log(err)
+    }).catch(() => {
+    return dispatch({
+      type: ERROR
+    })
   })
 }
 export const genrTracklist = (genr) => dispatch => {
@@ -127,24 +138,16 @@ export const genrTracklist = (genr) => dispatch => {
         type: GET_TRACKLIST,
         tracklist: res.data.data
       })
-    }).catch(err => {
-    console.log(err)
+    }).catch(() => {
+    return dispatch({
+      type: ERROR
+    })
   })
 }
 export const getLocalTracklist = () => dispatch => {
-  axios.get('http://localhost:3000/data').then(
-    res => {
-      if (res.data.error) {
-        window.location.href = '/'
-        return
-      }
-      console.log(res.data)
-      return dispatch({
-        type: GET_TRACKLIST,
-        tracklist: res.data
-      })
-    }).catch(err => {
-    console.log(err)
+  return dispatch({
+    type: GET_TRACKLIST,
+    tracklist: DefaultSongs
   })
 }
 export const setTrack = (track) => dispatch => {

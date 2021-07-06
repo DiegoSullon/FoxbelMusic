@@ -69,7 +69,7 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
         <InfoText>
           <InfoTittle>{track.name}</InfoTittle>
           <span>{track.author}</span>
-          <span>{formatTime(time)} - {formatTime(duration + 2)}</span>
+          <span>{formatTime(time)} - {formatTime(duration + 1)}</span>
         </InfoText>
       </SongInfo>
       <audio ref={(audio) => { setTrackAudio(audio) }} src={track.url} onChange={() => console.log('Asdasdasd')} />
