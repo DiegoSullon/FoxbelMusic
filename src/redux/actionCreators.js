@@ -14,7 +14,6 @@ export const searchTracklist = (search) => dispatch => {
   setLoading(true)(dispatch)
   axios.get(`${API_URL}search?q=${search}`).then(
     res => {
-      console.log('DATA:', res.data)
       if (res.data.error) {
         window.location.href = '/'
         return
@@ -34,7 +33,6 @@ export const artistTracklist = () => dispatch => {
   setLoading(true)(dispatch)
   axios.get(`${API_URL}artist/27/top?limit=50`).then(
     res => {
-      console.log('DATA:', res.data)
       if (res.data.error) {
         window.location.href = '/'
         return
@@ -54,7 +52,6 @@ export const albumTracklist = () => dispatch => {
   setLoading(true)(dispatch)
   axios.get(`${API_URL}album/302127/tracks`).then(
     res => {
-      console.log('DATA:', res.data)
       if (res.data.error) {
         window.location.href = '/'
         return
@@ -74,7 +71,6 @@ export const getTracklist = () => dispatch => {
   setLoading(true)(dispatch)
   axios.get(`${API_URL}radio/37151/tracks`).then(
     res => {
-      console.log('DATA:', res.data)
       if (res.data.error) {
         window.location.href = '/'
         return
@@ -94,7 +90,6 @@ export const stationTracklist = () => dispatch => {
   setLoading(true)(dispatch)
   axios.get(`${API_URL}radio/38215/tracks`).then(
     res => {
-      console.log('DATA:', res.data)
       if (res.data.error) {
         window.location.href = '/'
         return
@@ -114,7 +109,6 @@ export const genrTracklist = (genr) => dispatch => {
   setLoading(true)(dispatch)
   axios.get(`${API_URL}search?q=${genr}`).then(
     res => {
-      console.log('DATA:', res.data)
       if (res.data.error) {
         window.location.href = '/'
         return

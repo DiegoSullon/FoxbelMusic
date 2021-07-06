@@ -39,7 +39,6 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
       trackAudio.onended = () => {
         setTime(0)
         next(track.index)
-        console.log('ENDEEED')
       }
     }
   })
@@ -72,7 +71,7 @@ const Controls = ({ play, track, pause, resume, next, previous }) => {
           <span>{formatTime(time)} - {formatTime(duration + 1)}</span>
         </InfoText>
       </SongInfo>
-      <audio ref={(audio) => { setTrackAudio(audio) }} src={track.url} onChange={() => console.log('Asdasdasd')} />
+      <audio ref={(audio) => { setTrackAudio(audio) }} src={track.url} />
       <PlaybackControls>
         <PlaybackButton onClick={() => {
           setTime(0)
