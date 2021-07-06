@@ -9,6 +9,15 @@ export const MainContent = styled.main`
     margin-left: 2em;
   }
 `
+export const ErrorMessage = styled.p`
+  margin-top: 0;
+  color: white;
+  background-color: #f5af36;
+  padding: .5em 1.5em;
+  font-weight: bold;
+  border-radius: 2em;
+  text-align: justify;
+`
 export const MainHeader = styled.header`
   display: flex;
   margin-bottom: 2em;

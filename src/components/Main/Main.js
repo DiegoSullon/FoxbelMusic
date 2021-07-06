@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Results } from './Results/Results'
+import Spinner from './Spinner/Spinner.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faPlay, faEllipsisH } from '@fortawesome/free-solid-svg-icons'
 import {
   MainContent, MainHeader, SearchInput, SearchIco, MainDisplay, DisplayImage, DisplayIco, DisplayContent, P,
-  DisplayTittle, DisplayButtonsDiv, PlayButton, FollowButton, OptionsButton, AccessLink
+  DisplayTittle, DisplayButtonsDiv, PlayButton, FollowButton, OptionsButton, AccessLink, ErrorMessage
 } from './styles'
 import { connect } from 'react-redux'
 import store from '../../redux/store'
 import { getLocalTracklist, playTrack, searchTracklist, setTrack } from '../../redux/actionCreators'
-const Main = ({ user, token, tracklist, searchAction }) => {
+const Main = ({ error, loading, tracklist, searchAction }) => {
   const [search, setSearch] = useState('')
   const [searchList, setSearchList] = useState(tracklist)
   const getTracklistAsync = (dispatch) => new Promise((resolve, reject) => {
@@ -17,13 +18,14 @@ const Main = ({ user, token, tracklist, searchAction }) => {
     resolve()
   })
   useEffect(() => {
-    // console.log(user)
-    // store.dispatch(getUser(token))
-    // if (user) {
-    //   store.dispatch(getUserTracklist(user.tracklist, token))
-    // }
     getTracklistAsync(store.dispatch)
   }, [])
+  const handleKeyPress = event => {
+    const { key, keyCode } = event
+    if (keyCode === 32 || key === 'Enter') {
+      searchAction(search)
+    }
+  }
   useEffect(() => {
     setSearchList(tracklist)
     store.dispatch(setTrack({
@@ -42,9 +44,11 @@ const Main = ({ user, token, tracklist, searchAction }) => {
   const mainTrack = tracklist[0]
   return (
     <MainContent>
+      {loading && <Spinner />}
+      {error && <ErrorMessage>You have reached the limit of requests per hour, request access again later.</ErrorMessage>}
       <MainHeader>
         <div>
-          <SearchInput type='text' placeholder='Buscar' value={search} onChange={updateSearch} />
+          <SearchInput type='text' placeholder='Buscar' value={search} onChange={updateSearch} onKeyDown={handleKeyPress} />
           <SearchIco>
             <FontAwesomeIcon icon={faSearch} color='#bdbdbd' onClick={() => searchAction(search)} />
           </SearchIco>
@@ -87,15 +91,19 @@ const Main = ({ user, token, tracklist, searchAction }) => {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user,
-    token: state.token,
-    tracklist: state.tracklist
+    tracklist: state.tracklist,
+    error: state.error,
+    loading: state.loading
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
     searchAction: (search) => {
-      dispatch(searchTracklist(search))
+      if (search !== '') {
+        dispatch(searchTracklist(search))
+      } else {
+        dispatch(getLocalTracklist())
+      }
     }
   }
 }
