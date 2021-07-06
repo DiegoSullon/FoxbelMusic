@@ -9,7 +9,7 @@ import {
 import { connect } from 'react-redux'
 import store from '../../redux/store'
 import { getLocalTracklist, playTrack, searchTracklist, setTrack } from '../../redux/actionCreators'
-const Main = ({ user, token, error, tracklist, searchAction }) => {
+const Main = ({ error, tracklist, searchAction }) => {
   const [search, setSearch] = useState('')
   const [searchList, setSearchList] = useState(tracklist)
   const getTracklistAsync = (dispatch) => new Promise((resolve, reject) => {
@@ -17,11 +17,6 @@ const Main = ({ user, token, error, tracklist, searchAction }) => {
     resolve()
   })
   useEffect(() => {
-    // console.log(user)
-    // store.dispatch(getUser(token))
-    // if (user) {
-    //   store.dispatch(getUserTracklist(user.tracklist, token))
-    // }
     getTracklistAsync(store.dispatch)
   }, [])
   const handleKeyPress = event => {
@@ -94,8 +89,6 @@ const Main = ({ user, token, error, tracklist, searchAction }) => {
 }
 const mapStateToProps = state => {
   return {
-    user: state.user,
-    token: state.token,
     tracklist: state.tracklist,
     error: state.error
   }

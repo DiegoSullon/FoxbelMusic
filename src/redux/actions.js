@@ -1,5 +1,3 @@
-export const GET_USER = 'GET_USER'
-export const GET_TOKEN = 'GET_TOKEN'
 export const GET_TRACKLIST = 'GET_TRACKLIST'
 export const SET_TRACK = 'SET_TRACK'
 export const PLAY_TRACK = 'PLAY_TRACK'

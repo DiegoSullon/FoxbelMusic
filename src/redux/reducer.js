@@ -1,8 +1,6 @@
-import { GET_TOKEN, GET_USER, GET_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK, ERROR } from './actions'
+import { GET_TRACKLIST, NEXT_TRACK, PAUSE_TRACK, PLAY_TRACK, PREVIOUS_TRACK, RESUME_TRACK, SET_TRACK, ERROR } from './actions'
 
 const initialState = {
-  token: '',
-  user: {},
   tracklist: [],
   track: {},
   play: false,
@@ -11,18 +9,6 @@ const initialState = {
 }
 export const playbackReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_USER:
-      return {
-        ...state,
-        user: action.user,
-        error: false
-      }
-    case GET_TOKEN:
-      return {
-        ...state,
-        token: action.token.replace('access_token=', '').replace(/&expires=\d*/, ''),
-        error: false
-      }
     case GET_TRACKLIST:
       return {
         ...state,
